@@ -5,9 +5,9 @@ import { PersoEspeciaHospital } from './entities/perso_especia_hospital.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QueryRunner, Repository } from 'typeorm';
 
-import { PersonalSalud } from 'src/personal_salud/personal_salud.entity';
-import { Specialty } from 'src/specialty/specialty.entity';
-import { EstablecimientoSalud } from 'src/establecimiento/establecimiento.entity';
+import { PersonalSalud } from '../personal_salud/personal_salud.entity';
+import { Specialty } from '../specialty/specialty.entity';
+import { EstablecimientoSalud } from '../establecimiento/establecimiento.entity';
 
 @Injectable()
 export class PersoEspeciaHospitalService {
