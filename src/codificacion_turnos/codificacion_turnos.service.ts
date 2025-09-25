@@ -5,7 +5,7 @@ import { CodificacionTurno } from './codificacion_turno.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Between, Repository } from 'typeorm';
 import { Specialty } from '../specialty/specialty.entity';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../Auth/auth.service';
 import {EstablecimientoSalud} from '../establecimiento/establecimiento.entity';
 
 @Injectable()

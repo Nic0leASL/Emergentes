@@ -1,11 +1,11 @@
 // src/paciente/paciente.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Acompanante } from 'src/acompañante/acompañante.entity';
-import { AntecedenteObstetrico } from 'src/antecedentesobstetricos/antecedentesobstetrico.entity';
-import { DatosClinicos } from 'src/datosclinicos/datoclinico.entity';
-import { Diagnosticos } from 'src/diagnosticos/diagnostico.entity';
-import { Transferencia } from 'src/transferencias/transferencia.entity';
-import { Tratamientos } from 'src/tratamientos/tratamiento.entity';
+import { Acompanante } from '../acompañante/acompañante.entity';
+import { AntecedenteObstetrico } from '../antecedentesobstetricos/antecedentesobstetrico.entity';
+import { DatosClinicos } from '../datosclinicos/datoclinico.entity';
+import { Diagnosticos } from '../diagnosticos/diagnostico.entity';
+import { Transferencia } from '../transferencias/transferencia.entity';
+import { Tratamientos } from '../tratamientos/tratamiento.entity';
 
 @Entity()
 export class Paciente {
