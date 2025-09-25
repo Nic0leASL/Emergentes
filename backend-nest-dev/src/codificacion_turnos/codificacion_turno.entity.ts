@@ -1,7 +1,7 @@
   import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
 
   import {RolTurno}  from '../rol_turnos/rol_turno.entity'; 
-  import { Specialty } from 'src/specialty/specialty.entity';
+  import { Specialty } from '../specialty/specialty.entity';
   import { EstablecimientoSalud } from '../establecimiento/establecimiento.entity';
 
   @Entity('codificacion_turnos')
