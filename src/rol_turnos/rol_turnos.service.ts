@@ -4,10 +4,10 @@ import { EntityManager, Repository } from 'typeorm';
 import { RolTurno } from './rol_turno.entity';
 import { CreateRolTurnoDto } from './dto/create-rol_turno.dto';
 import { UpdateRolTurnoDto } from './dto/update-rol_turno.dto';
-import { CodificacionTurno } from 'src/codificacion_turnos/codificacion_turno.entity';
-import { Specialty } from 'src/specialty/specialty.entity';
-import { EstablecimientoSalud } from 'src/establecimiento/establecimiento.entity';
-import { PersonalSalud } from 'src/personal_salud/personal_salud.entity';
+import { CodificacionTurno } from '../codificacion_turnos/codificacion_turno.entity';
+import { Specialty } from '../specialty/specialty.entity';
+import { EstablecimientoSalud } from '../establecimiento/establecimiento.entity';
+import { PersonalSalud } from '../personal_salud/personal_salud.entity';
 
 import { AreaPersonalService } from '../area_personal/area_personal.service';
 import { CreateAreaPersonalDto } from '../area_personal/dto/create-area_personal.dto';
