@@ -4,9 +4,9 @@ import { PersoEspeciaHospitalController } from './perso_especia_hospital.control
 import { PersoEspeciaHospital } from './entities/perso_especia_hospital.entity';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonalSalud } from 'src/personal_salud/personal_salud.entity';
-import { Specialty } from 'src/specialty/specialty.entity';
-import { EstablecimientoSalud } from 'src/establecimiento/establecimiento.entity';
+import { PersonalSalud } from '../personal_salud/personal_salud.entity';
+import { Specialty } from '../specialty/specialty.entity';
+import { EstablecimientoSalud } from '../establecimiento/establecimiento.entity';
 
 @Module({
   imports: [
@@ -22,4 +22,3 @@ import { EstablecimientoSalud } from 'src/establecimiento/establecimiento.entity
   exports: [PersoEspeciaHospitalService],
 })
 export class PersoEspeciaHospitalModule {}
-
