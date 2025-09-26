@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Delete, Param, Body, NotFoundException } from '@nestjs/common';
 import { EstabEspecialidadService } from './estab_especialidad.service';
-import { Specialty } from 'src/specialty/specialty.entity';
+import { Specialty } from '../specialty/specialty.entity';
 import { AuthService } from '../Auth/auth.service';
 
 @Controller('estab-especialidad')
