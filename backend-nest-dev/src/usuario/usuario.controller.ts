@@ -1,7 +1,7 @@
 import { Controller, Post, Put, Param, Body, HttpStatus, NotFoundException, Logger, Get, ParseIntPipe  } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { AuthService } from '../Auth/auth.service';
-import { PersonalSalud } from '../personal_salud/personal_salud.entity';
+import { PersonalSalud } from 'src/personal_salud/personal_salud.entity';
 
 @Controller('usuario')
 export class UsuarioController {
