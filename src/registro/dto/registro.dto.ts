@@ -1,5 +1,5 @@
-import { CreatePacienteDto } from "src/paciente/dto/create-paciente.dto";
-import { CreateReferenciaDto } from "src/referencia/dto/create-referencia.dto";
+import { CreatePacienteDto } from "../../paciente/dto/create-paciente.dto";
+import { CreateReferenciaDto } from "../../referencia/dto/create-referencia.dto";
 
 export class RegistroCompleteDto {
     paciente: CreatePacienteDto;
