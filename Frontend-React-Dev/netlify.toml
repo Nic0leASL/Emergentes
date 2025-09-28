@@ -1,0 +1,14 @@
+[build]
+  # Comando para construir tu proyecto de React (desde package.json)
+  command = "npm run build"
+  
+  # Directorio donde Vite genera el sitio final
+  publish = "dist"
+  
+  # Directorio base de tu proyecto de frontend
+  base = "Frontend-React-Dev"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
