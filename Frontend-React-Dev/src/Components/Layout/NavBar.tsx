@@ -11,8 +11,6 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
   const {
-    usuarioID,
-    establecimientoID,
     setIsAuthenticated,
     setRole,
     setUsuarioID,
@@ -31,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
     if (user) {
       setUserFullName(`${user.nombres} ${user.primer_apellido}`);
       setUserRole(user.rol);
-      const idEstablecimiento = user.establecimiento_id;
+      const idEstablecimiento = user.establecimiento_id; // Aquí se usa idEstablecimiento
       setEstablecimientoID(idEstablecimiento);
       fetchHospitalName(idEstablecimiento);
     }
@@ -39,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
 
   const fetchHospitalName = async (establecimientoID: string) => {
     try {
-      const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/establecimiento/${establecimientoID}`;
+      const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/establecimiento/${establecimientoID}`; // Aquí se usa establecimientoID
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       const token = user.token; // Asumiendo que el token se guarda en el login
       const response = await axios.get(apiUrl, {
