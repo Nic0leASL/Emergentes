@@ -10,9 +10,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // Configuración de CORS explícita para aceptar todo.
-  // Esto es para asegurarnos de que no hay ninguna mala configuración.
+  // Esta es la configuración más abierta para diagnosticar el problema.
   app.enableCors({
-    origin: true, // Refleja el origen de la petición
+    origin: true, // Acepta cualquier origen
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
