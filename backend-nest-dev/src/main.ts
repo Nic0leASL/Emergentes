@@ -15,6 +15,7 @@ async function bootstrap() {
   ];
 
   app.enableCors({
+    // La función `origin` es la forma más robusta de manejar una whitelist.
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.some(o => (o instanceof RegExp ? o.test(origin) : o === origin))) {
         callback(null, true);
@@ -22,6 +23,7 @@ async function bootstrap() {
         callback(new Error('No permitido por CORS'));
       }
     },
+    // Aseguramos que el método OPTIONS esté explícitamente permitido.
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
