@@ -40,7 +40,13 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
   const fetchHospitalName = async (establecimientoID: string) => {
     try {
       const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/establecimiento/${establecimientoID}`;
-      const response = await axios.get(apiUrl);
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const token = user.token; // Asumiendo que el token se guarda en el login
+      const response = await axios.get(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Añadir el token de autenticación
+        },
+      });
       if (response.data && response.data.nombre) {
         setHospitalName(response.data.nombre);
       } else {
