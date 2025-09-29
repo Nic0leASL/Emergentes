@@ -62,6 +62,9 @@ import { PersoEspeciaHospitalModule } from './perso_especia_hospital/perso_espec
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        ssl: {
+          rejectUnauthorized: false // Esto es para entornos de desarrollo. En producción, se recomienda usar un certificado CA.
+        },
         synchronize: false, // Solo en desarrollo. Desactívalo en producción.
       }),
     }),
