@@ -24,8 +24,8 @@ const HospitalInfo: React.FC = () => {
       try {
         const response = await axios.get<Especialidad[]>(`${API_BASE_URL}/estab-especialidad/especialidades/${establecimientoId}`);
         setEspecialidades(response.data);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
+      } catch (err: unknown) {
+        console.error("Error fetching especialidades:", err);
         setError('Error al cargar las especialidades del hospital');
       } finally {
         setLoading(false);

@@ -28,8 +28,8 @@ const ServiciosEspInfo: React.FC = () => {
           `${API_BASE_URL}/estab-servicio/establecimiento/${establecimientoId}/especialidad/${especialidadId}/servicios`
         );
         setServicios(response.data);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
+      } catch (err: unknown) {
+        console.error("Error fetching servicios:", err); // Registrar el error detallado
         setError('Error al cargar los servicios de la especialidad');
       } finally {
         setLoading(false);

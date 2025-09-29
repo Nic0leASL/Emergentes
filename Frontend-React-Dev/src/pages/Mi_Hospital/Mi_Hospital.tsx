@@ -74,16 +74,17 @@ const MiHospital: React.FC = () => {
   // Función para confirmar la eliminación
   const handleConfirmDelete = async () => {
     if (especialidadAEliminar && hasPermission(['Admin Hospital'])) {
-      console.log("ID enviado para eliminación:", especialidadAEliminar.id); // Log para verificar el ID
       try {
+        console.log("ID enviado para eliminación:", especialidadAEliminar.id); // Log para verificar el ID
         await axios.delete(`${API_BASE_URL}/estab-especialidad/${especialidadAEliminar.id}`);
         setEspecialidades((prevEspecialidades) =>
           prevEspecialidades.filter((esp) => esp.id !== especialidadAEliminar.id)
         );
-        setIsModalOpen(false);
-        setEspecialidadAEliminar(null);
       } catch (err) {
         console.error('Error al eliminar la especialidad:', err);
+        setError('Error al eliminar la especialidad. Por favor, inténtalo de nuevo.');
+      } finally {
+        handleCloseModal(); // Se asegura de que el modal se cierre siempre
       }
     }
   };
