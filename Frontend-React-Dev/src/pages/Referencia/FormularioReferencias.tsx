@@ -1,5 +1,5 @@
 // src/FormularioReferencias.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import ExpandableSection from '../../Components/ExpandableSection';
 import './Styles/App.css';
 
@@ -9,22 +9,37 @@ import axios, { AxiosError } from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+const initialPacienteState = {
+  nombres: '',
+  primer_apellido: '',
+  segundo_apellido: '',
+  fecha_nacimiento: '',
+  ci: '',
+  domicilio: '',
+  telefono: '',
+  historia_clinica: '',
+  procedencia: '',
+  sexo: '',
+  discapacidad: '',
+  tipo_discapacidad: '',
+  grado_discapacidad: '',
+};
+
+type PacienteAction = { type: 'UPDATE_FIELD'; field: string; value: string } | { type: 'RESET' };
+
+function pacienteReducer(state: typeof initialPacienteState, action: PacienteAction) {
+  switch (action.type) {
+    case 'UPDATE_FIELD':
+      return { ...state, [action.field]: action.value };
+    case 'RESET':
+      return initialPacienteState;
+    default:
+      return state;
+  }
+}
+
 const FormularioReferencias: React.FC = () => {
-  const [paciente, setPaciente] = useState({
-    nombres: '',
-    primer_apellido: '',
-    segundo_apellido: '',
-    fecha_nacimiento: '',
-    ci: '',
-    domicilio: '',
-    telefono: '',
-    historia_clinica: '',
-    procedencia: '',
-    sexo: '',
-    discapacidad: '',
-    tipo_discapacidad: '',
-    grado_discapacidad: '',
-  });
+  const [paciente, dispatchPaciente] = useReducer(pacienteReducer, initialPacienteState);
 
   const [referencia, setReferencia] = useState({
     fecha_ingreso: '',
@@ -144,10 +159,7 @@ const FormularioReferencias: React.FC = () => {
   // Maneja los cambios en los inputs del formulario de paciente
   const handlePacienteChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setPaciente((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatchPaciente({ type: 'UPDATE_FIELD', field: name, value });
   };
 
   // Obtener los datos del usuario logueado y usar su ID para obtener los datos del personal de salud
@@ -231,21 +243,7 @@ const FormularioReferencias: React.FC = () => {
 
 
   const handleClear = () => {
-    setPaciente({
-      nombres: '',
-      primer_apellido: '',
-      segundo_apellido: '',
-      fecha_nacimiento: '',
-      ci: '',
-      domicilio: '',
-      telefono: '',
-      historia_clinica: '',
-      procedencia: '',
-      sexo: '',
-      discapacidad: '',
-      tipo_discapacidad: '',
-      grado_discapacidad: '',
-    });
+    dispatchPaciente({ type: 'RESET' });
 
     setReferencia({
       fecha_ingreso: '',

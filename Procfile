@@ -1,1 +1,1 @@
-web: npm run start:prod
+web: cd backend-nest-dev && npm run start:prod
