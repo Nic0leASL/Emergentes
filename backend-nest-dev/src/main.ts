@@ -4,6 +4,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  // ----> CANARIO DE VERIFICACIÓN DE DESPLIEGUE <----
+  console.log("--- INICIANDO BACKEND - VERSIÓN [2024-07-26 10:00 AM] ---");
+
   const app = await NestFactory.create(AppModule);
 
   // Añade un ValidationPipe global para validar automáticamente los DTOs.
