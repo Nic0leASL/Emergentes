@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Referencia/Styles/List.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 import { useAuth } from '../../Context/AuthContext';
 
 interface Referencia {
@@ -20,44 +20,28 @@ const ReferenciaList: React.FC = () => {
   const navigate = useNavigate();
   const { hasPermission } = useAuth();
 
-  const fetchReferencias = () => {
-    fetch(`${API_BASE_URL}/referencias/estado/2`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error al obtener las referencias');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setReferencias(data);
-      })
-      .catch((error) => {
-        console.error('Error en fetchReferencias:', error);
-        setErrorMessage('Error al obtener la lista de referencias');
-      });
+  const fetchReferencias = async () => {
+    try {
+      const response = await axios.get<Referencia[]>(`${API_BASE_URL}/referencias/estado/2`);
+      setReferencias(response.data);
+    } catch (error) {
+      console.error('Error en fetchReferencias:', error);
+      setErrorMessage('Error al obtener la lista de referencias');
+    }
   };
 
-  const handleDelete = (referenciaId: number) => {
+  const handleDelete = async (referenciaId: number) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar esta referencia?')) {
-      fetch(`${API_BASE_URL}/referencias/${referenciaId}/remove`, {
-        method: 'PATCH', // Usamos PATCH para el soft remove
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Error al eliminar la referencia');
-          }
-          setReferencias((prevReferencias) =>
-            prevReferencias.filter((ref) => ref.referencia_ID !== referenciaId)
-          );
-          alert('Referencia eliminada correctamente');
-        })
-        .catch((error) => {
-          console.error('Error al eliminar la referencia:', error);
-          setErrorMessage('No se pudo eliminar la referencia');
-        });
+      try {
+        await axios.patch(`${API_BASE_URL}/referencias/${referenciaId}/remove`);
+        setReferencias((prevReferencias) =>
+          prevReferencias.filter((ref) => ref.referencia_ID !== referenciaId)
+        );
+        alert('Referencia eliminada correctamente'); // Considerar reemplazar con un modal o toast
+      } catch (error) {
+        console.error('Error al eliminar la referencia:', error);
+        setErrorMessage('No se pudo eliminar la referencia');
+      }
     }
   };
   
