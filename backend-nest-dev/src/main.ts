@@ -9,20 +9,9 @@ async function bootstrap() {
   // Añade un ValidationPipe global para validar automáticamente los DTOs.
   app.useGlobalPipes(new ValidationPipe());
 
-  // Lista de orígenes permitidos. Usamos una expresión regular para Netlify.
-  // const allowedOrigins = [
-  //   'http://localhost:5173', // Entorno de desarrollo local
-  //   /^https:\/\/([a-z0-9-]+\--)?sedes-referencias\.netlify\.app$/, // URLs de Netlify (principal y previews)
-  // ];
-
-  app.enableCors({
-    origin: [
-      'http://localhost:5173',
-      'https://sedes-referencias.netlify.app', // URL principal de Netlify
-      'https://68d9ddb72bd7d34072d176ab--sedes-referencias.netlify.app' // URL específica que da error
-    ],
-    credentials: true,
-  });
+  // Habilita CORS para TODOS los orígenes.
+  // Esto es para depuración. Si esto funciona, el problema es 100% el despliegue.
+  app.enableCors();
 
   // El puerto puede ser diferente dependiendo de tu configuración en Render.
   // Usualmente Render lo gestiona con process.env.PORT.
