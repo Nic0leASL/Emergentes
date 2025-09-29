@@ -7,13 +7,13 @@ async function bootstrap() {
   
   // Habilitar la validación global para todos los DTOs
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true, // Ignora propiedades que no están en el DTO
-    forbidNonWhitelisted: true, // Lanza un error si se reciben propiedades no deseadas
+    whitelist: true,
+    forbidNonWhitelisted: true,
   }));
 
   // Habilitar CORS para permitir peticiones desde tu frontend en Vercel
   app.enableCors({
-    origin: 'https://emergentes-le9i.vercel.app', // URL de Vercel sin la barra final
+    origin: true, // <-- ¡ESTO ES TEMPORAL!
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
