@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import './Login.css';
+import medicoImg from '../../assets/Images/Medico.svg';
+import axios from 'axios';
+import logoSedesImg from '../../assets/Images/logo-sedes.svg';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 
@@ -40,18 +43,16 @@ const Login: React.FC = () => {
       contrasenia: formData.password,
     };
 
-    fetch(`${API_BASE_URL}/usuario/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(loginData),
-    })
+    axios.post(`${API_BASE_URL}/usuario/login`, loginData)
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Error en las credenciales');
+        const data = response.data;
+
+        // Si el backend responde con un error, aunque sea 200 OK
+        if (data.statusCode >= 400) {
+          throw new Error(data.message || 'Error en las credenciales');
         }
-        return response.json();
+
+        return data;
       })
       .then(data => {
         // Guarda los datos en localStorage
@@ -90,11 +91,11 @@ const Login: React.FC = () => {
     <div className="login-page">
       <div className="container_login">
         <div className="img">
-          <img src="src/assets/Images/Medico.svg" alt="background illustration" />
+          <img src={medicoImg} alt="background illustration" />
         </div>
         <div className="login_content">
           <form onSubmit={handleSubmit}>
-            <img src="src/assets/Images/logo-sedes.svg" alt="avatar" />
+            <img src={logoSedesImg} alt="avatar" />
             <h2 className="title">Inicio de sesión</h2>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Mostrar mensaje de error */}
             {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>} {/* Mostrar mensaje de éxito */}
