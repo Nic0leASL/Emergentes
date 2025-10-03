@@ -13,13 +13,13 @@ async function bootstrap() {
 
   // Habilitar CORS para permitir peticiones desde tu frontend en Vercel
   app.enableCors({
-    origin: true, // <-- ¡ESTO ES TEMPORAL!
+    origin: true, // Reemplaza con la URL de tu frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
   // Iniciar la aplicación en el puerto que Heroku asigne, o 3000 en local
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || 3000,'0.0.0.0');
 }
 
 bootstrap();

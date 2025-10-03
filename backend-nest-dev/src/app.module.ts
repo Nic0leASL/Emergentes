@@ -87,18 +87,11 @@ import { PersoEspeciaHospitalModule } from './perso_especia_hospital/perso_espec
     HistoriaCamaModule,
     ReporteModule,
     TypeOrmModule.forFeature([PersonalSalud]),
+    forwardRef(() => AuthModule),
     ConsultaExternaModule,
     AreaPersonalModule,
     CodificacionTurnosModule,
     RolTurnosModule,
-    forwardRef(() => AuthModule),
-
-    PersonalSaludModule,
-    UsuarioModule,
-    AuthModule,
-    MailModule,
-    SpecialtyModule,
-    EstablecimientoModule,
     PersoEspeciaHospitalModule,
     ReferenciaModule,
     PacienteModule,
@@ -106,12 +99,9 @@ import { PersoEspeciaHospitalModule } from './perso_especia_hospital/perso_espec
   ],
   controllers: [
     AppController,
-    PersonalSaludController,
-    CamaController,
   ],
   providers: [
     AppService,
-    PersonalSaludService,
   ],
 })
 export class AppModule {}
